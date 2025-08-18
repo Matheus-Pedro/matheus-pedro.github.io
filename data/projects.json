@@ -1,5 +1,29 @@
 [
   {
+    "title": "Efficiency Gym",
+    "image": "media/images/efficiencygym.png",
+    "video": "media/videos/efficiencygym.webm",
+    "description": "Efficiency Gym é uma academia que oferece uma variedade de aulas e programas de treinamento para atender às necessidades de seus clientes. O sistema foi desenvolvido para a Efficiency Gym, permitindo aos clientes comprarem produtos da empresa e de parceiros. Até a data atual não foi oficialmente lançado, mas já está sendo testado e utilizado internamente pela empresa. Sua API foi desenvolvida em Dotnet 9 e seu frontend em Next.js. Resultou em algumas parcerias e futuros projetos com a Efficiency Gym.",
+    "link": "https://efficiencygym.com.br",
+    "technologies": ["React", "Next.js", "Tailwind CSS", "Docker", "Cloudflare", "Bucket S3"]
+  },
+  {
+    "title": "Terra Alerta",
+    "image": "media/images/terraalerta.png",
+    "video": "media/videos/terraalerta.webm",
+    "description": "Terra Alerta é um sistema de monitoramento de incêndios florestais, desenvolvido para a empresa Terra Alerta, permitindo aos usuários monitorarem incêndios florestais em tempo real. O sistema foi desenvolvido para a Terra Alerta, permitindo aos usuários monitorarem incêndios florestais em tempo real. O sistema foi desenvolvido para a Terra Alerta, permitindo aos usuários monitorarem incêndios florestais em tempo real.",
+    "link": "https://github.com/Matheus-Pedro/TerraAlerta",
+    "technologies": ["C#", "Dotnet", "PostgreSQL", "Docker", "React Native", "Expo", "TypeScript", "Cloudflare", "Bucket S3", "Google AdMob"]
+  },
+  {
+    "title": "Chronus",
+    "image": "media/images/chamados.png",
+    "video": "media/videos/chamados.webm",
+    "description": "Chamados TBR é um sistema de gerenciamento de chamados, desenvolvido para a empresa Trabalha Brasil, permitindo aos usuários gerenciar chamados de forma eficiente. O sistema foi desenvolvido para a Trabalha Brasil, permitindo aos usuários gerenciar chamados de forma eficiente. O sistema foi desenvolvido para a Trabalha Brasil, permitindo aos usuários gerenciar chamados de forma eficiente.",
+    "link": "https://github.com/Matheus-Pedro/TerraAlerta",
+    "technologies": ["C#", "Dotnet", "PostgreSQL", "Docker", "React Native", "Expo", "TypeScript", "Cloudflare", "Bucket S3", "Google AdMob"]
+  },
+  {
     "title": "Xys Bio",
     "image": "media/images/xysbio.png",
     "video": "media/videos/xysbio.webm",

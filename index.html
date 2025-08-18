@@ -263,25 +263,17 @@
         function updateHeader() {
           // Posição do scroll
           const scrollPos = window.scrollY;
-          // Altura da seção home
-          const homeSectionHeight = homeSection.offsetHeight;
           
-          // Se estiver na seção home
-          if (scrollPos < homeSectionHeight) {
-            // Header visível com fundo semitransparente
-            header.classList.remove('transform', 'translate-y-[-100%]');
-            
-            // Adicionar fundo escuro semitransparente quando rolar um pouco
-            if (scrollPos > 50) {
-              header.classList.add('bg-zinc-950/80', 'backdrop-blur-md');
-              header.classList.remove('bg-transparent');
-            } else {
-              header.classList.add('bg-transparent');
-              header.classList.remove('bg-zinc-950/80', 'backdrop-blur-md');
-            }
+          // Header sempre visível
+          header.classList.remove('transform', 'translate-y-[-100%]');
+          
+          // Adicionar fundo escuro semitransparente quando rolar um pouco
+          if (scrollPos > 50) {
+            header.classList.add('bg-zinc-950/80', 'backdrop-blur-md');
+            header.classList.remove('bg-transparent');
           } else {
-            // Esconder header quando sair da seção home
-            header.classList.add('transform', 'translate-y-[-100%]');
+            header.classList.add('bg-transparent');
+            header.classList.remove('bg-zinc-950/80', 'backdrop-blur-md');
           }
         }
         
