@@ -29,11 +29,13 @@
                 </p>
                 <div class="space-x-4 mt-8">
                     <button onclick="baixarArquivo()"
-                        class="bg-yellow-500 text-black py-2 px-6 rounded-md hover:bg-yellow-600 transition-all">
+                        class="bg-yellow-500 text-black py-2 px-6 rounded-md hover:bg-yellow-600 transition-all font-medium"
+                        style="font-family: 'Space Grotesk', sans-serif;">
                         Baixar CV
                     </button>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
-                        class="border border-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-600 hover:text-black transition-all">
+                    <button onclick="(function(){ var el=document.getElementById('contact'); if(!el) return; var b=el.getBoundingClientRect().bottom+window.scrollY; window.scrollTo({top:Math.max(0,b-window.innerHeight),behavior:'smooth'}); })()"
+                        class="border border-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-600 hover:text-black transition-all font-medium"
+                        style="font-family: 'Space Grotesk', sans-serif;">
                         Entrar em contato
                     </button>
                 </div>

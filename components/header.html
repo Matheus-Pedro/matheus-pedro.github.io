@@ -1,7 +1,7 @@
 <nav id="siteHeader" class="fixed top-0 left-0 w-full py-4 px-4 md:px-6 transition-all duration-300 z-50 bg-transparent">
   <div class="container mx-auto flex justify-between items-center">
-    <div class="text-xl md:text-2xl font-bold text-white">
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">MP</span>
+    <div class="flex items-center">
+      <img src="./media/images/mocap-logo.svg" alt="Mocap Logo" class="h-8 md:h-10 w-auto">
     </div>
     
     <!-- Menu hambúrguer para mobile -->
@@ -12,26 +12,26 @@
     </button>
     
     <!-- Menu de navegação para desktop -->
-    <ul class="hidden md:flex space-x-8">
+    <ul class="hidden md:flex space-x-8" style="font-family: 'Space Grotesk', sans-serif;">
       <li><a href="#home" class="hover:text-yellow-500 transition-colors">Home</a></li>
       <li><a href="#about" class="hover:text-yellow-500 transition-colors">Sobre</a></li>
       <li><a href="#projects" class="hover:text-yellow-500 transition-colors">Projetos</a></li>
       <li><a href="#skills" class="hover:text-yellow-500 transition-colors">Habilidades</a></li>
       <li><a href="#contact" class="hover:text-yellow-500 transition-colors">Contato</a></li>
-      <li><button onclick="baixarArquivo()" class="bg-yellow-500 text-black py-1 px-3 rounded hover:bg-yellow-600 transition-colors">Curriculum</button></li>
+      <li><button onclick="baixarArquivo()" class="bg-yellow-500 text-black py-1 px-3 rounded hover:bg-yellow-600 transition-colors" style="font-family: 'Space Grotesk', sans-serif;">Curriculum</button></li>
     </ul>
   </div>
   
   <!-- Menu mobile (expandido quando o botão hambúrguer é clicado) -->
   <div id="mobileMenu" class="md:hidden hidden bg-zinc-900/95 backdrop-blur-md absolute top-full left-0 right-0 shadow-lg transition-all duration-300 ease-in-out transform scale-y-0 origin-top border-t border-zinc-800">
     <div class="container mx-auto py-6">
-      <ul class="flex flex-col space-y-6 px-4">
+      <ul class="flex flex-col space-y-6 px-4" style="font-family: 'Space Grotesk', sans-serif;">
         <li><a href="#home" class="block py-2 hover:text-yellow-500 transition-colors font-medium">Home</a></li>
         <li><a href="#about" class="block py-2 hover:text-yellow-500 transition-colors font-medium">Sobre</a></li>
         <li><a href="#projects" class="block py-2 hover:text-yellow-500 transition-colors font-medium">Projetos</a></li>
         <li><a href="#skills" class="block py-2 hover:text-yellow-500 transition-colors font-medium">Habilidades</a></li>
         <li><a href="#contact" class="block py-2 hover:text-yellow-500 transition-colors font-medium">Contato</a></li>
-        <li class="pt-2"><button onclick="baixarArquivo()" class="bg-yellow-500 text-black py-3 px-4 rounded hover:bg-yellow-600 transition-colors w-full text-center font-medium">Baixar CV</button></li>
+        <li class="pt-2"><button onclick="baixarArquivo()" class="bg-yellow-500 text-black py-3 px-4 rounded hover:bg-yellow-600 transition-colors w-full text-center font-medium" style="font-family: 'Space Grotesk', sans-serif;">Baixar CV</button></li>
       </ul>
     </div>
   </div>
