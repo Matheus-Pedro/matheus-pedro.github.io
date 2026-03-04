@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matheus Pedro</title>
   <link rel="shortcut icon" type="image/png" href="./media/images/github.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -188,6 +191,27 @@
 <body class="font-sans leading-normal tracking-normal bg-zinc-950 text-white">
   <!-- Header -->
   <header id="header"></header>
+
+  <!-- Floating Nav (aparece quando a navbar principal some) -->
+  <div id="floatingNav" class="fixed top-4 right-4 md:top-6 md:right-6 z-50 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative">
+      <button id="floatingNavToggle" class="w-12 h-12 rounded-full bg-zinc-900/90 backdrop-blur-md border border-zinc-700 flex items-center justify-center hover:border-yellow-500 transition-all duration-200 shadow-lg">
+        <img src="./media/images/mocap-logo-square.svg" alt="Menu" class="w-7 h-7">
+      </button>
+      <div id="floatingNavMenu" class="hidden absolute right-0 top-14 bg-zinc-900/95 backdrop-blur-md border border-zinc-800 rounded-xl shadow-2xl py-3 min-w-[180px] origin-top-right scale-95 opacity-0 transition-all duration-200" style="font-family: 'Space Grotesk', sans-serif;">
+        <ul class="flex flex-col">
+          <li><a href="#home" class="block px-5 py-3 hover:text-yellow-500 hover:bg-zinc-800/50 transition-colors text-sm font-medium">Home</a></li>
+          <li><a href="#about" class="block px-5 py-3 hover:text-yellow-500 hover:bg-zinc-800/50 transition-colors text-sm font-medium">Sobre</a></li>
+          <li><a href="#projects" class="block px-5 py-3 hover:text-yellow-500 hover:bg-zinc-800/50 transition-colors text-sm font-medium">Projetos</a></li>
+          <li><a href="#skills" class="block px-5 py-3 hover:text-yellow-500 hover:bg-zinc-800/50 transition-colors text-sm font-medium">Habilidades</a></li>
+          <li><a href="#contact" class="block px-5 py-3 hover:text-yellow-500 hover:bg-zinc-800/50 transition-colors text-sm font-medium">Contato</a></li>
+          <li class="mx-3 mt-2 pt-2 border-t border-zinc-700">
+            <button onclick="baixarArquivo()" class="w-full bg-yellow-500 text-black py-2 px-4 rounded-lg hover:bg-yellow-600 transition-colors text-sm font-semibold" style="font-family: 'Space Grotesk', sans-serif;">Baixar CV</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   
   <main id="main">
     <!-- Seções que não compartilham o mesh gradient -->
@@ -248,6 +272,43 @@
         }
       });
       
+      // Floating Nav: toggle do dropdown
+      const floatingNavToggle = document.getElementById('floatingNavToggle');
+      const floatingNavMenu = document.getElementById('floatingNavMenu');
+
+      floatingNavToggle.addEventListener('click', function() {
+        const isHidden = floatingNavMenu.classList.contains('hidden');
+        if (isHidden) {
+          floatingNavMenu.classList.remove('hidden');
+          setTimeout(() => {
+            floatingNavMenu.classList.remove('scale-95', 'opacity-0');
+            floatingNavMenu.classList.add('scale-100', 'opacity-100');
+          }, 10);
+        } else {
+          floatingNavMenu.classList.remove('scale-100', 'opacity-100');
+          floatingNavMenu.classList.add('scale-95', 'opacity-0');
+          setTimeout(() => floatingNavMenu.classList.add('hidden'), 200);
+        }
+      });
+
+      // Fechar menu ao clicar em link
+      floatingNavMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          floatingNavMenu.classList.remove('scale-100', 'opacity-100');
+          floatingNavMenu.classList.add('scale-95', 'opacity-0');
+          setTimeout(() => floatingNavMenu.classList.add('hidden'), 200);
+        });
+      });
+
+      // Fechar ao clicar fora
+      document.addEventListener('click', function(e) {
+        if (!floatingNavToggle.contains(e.target) && !floatingNavMenu.contains(e.target)) {
+          floatingNavMenu.classList.remove('scale-100', 'opacity-100');
+          floatingNavMenu.classList.add('scale-95', 'opacity-0');
+          setTimeout(() => floatingNavMenu.classList.add('hidden'), 200);
+        }
+      });
+
       // Verificar se o header foi carregado
       function checkHeaderLoaded() {
         const header = document.getElementById('siteHeader');
@@ -256,21 +317,25 @@
           setTimeout(checkHeaderLoaded, 100);
           return;
         }
-        
+
         console.log("Header carregado com sucesso!");
         const homeSection = document.getElementById('home');
-        
+        const floatingNav = document.getElementById('floatingNav');
+
         function updateHeader() {
           // Posição do scroll
           const scrollPos = window.scrollY;
           // Altura da seção home
           const homeSectionHeight = homeSection.offsetHeight;
-          
+
           // Se estiver na seção home
           if (scrollPos < homeSectionHeight) {
             // Header visível com fundo semitransparente
             header.classList.remove('transform', 'translate-y-[-100%]');
-            
+            // Esconder floating nav
+            floatingNav.classList.add('opacity-0', 'pointer-events-none');
+            floatingNav.classList.remove('opacity-100');
+
             // Adicionar fundo escuro semitransparente quando rolar um pouco
             if (scrollPos > 50) {
               header.classList.add('bg-zinc-950/80', 'backdrop-blur-md');
@@ -282,16 +347,19 @@
           } else {
             // Esconder header quando sair da seção home
             header.classList.add('transform', 'translate-y-[-100%]');
+            // Mostrar floating nav
+            floatingNav.classList.remove('opacity-0', 'pointer-events-none');
+            floatingNav.classList.add('opacity-100');
           }
         }
-        
+
         // Executar ao carregar
         setTimeout(updateHeader, 100);
-        
+
         // Executar ao rolar
         window.addEventListener('scroll', updateHeader);
       }
-      
+
       // Iniciar a verificação
       checkHeaderLoaded();
       
@@ -309,6 +377,21 @@
       
       // Iniciar a verificação do componente home
       setTimeout(checkHomeLoaded, 500);
+
+      // Override da navegação para #contact: alinha o fundo da seção com o fundo do viewport
+      // (elimina o espaço vazio abaixo dos ícones sem aumentar a altura da página)
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href="#contact"]');
+        if (!link) return;
+        e.preventDefault();
+        const contactEl = document.getElementById('contact');
+        if (!contactEl) return;
+        const contactBottom = contactEl.getBoundingClientRect().bottom + window.scrollY;
+        const viewportH     = window.innerHeight;
+        // Rola para que o fundo da seção fique alinhado com o fundo do viewport
+        const scrollTo = contactBottom - viewportH;
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+      });
     });
   </script>
 </body>

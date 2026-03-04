@@ -6,7 +6,11 @@ $(document).ready(function () {
         initTypewriterAnimation();
     });
     $("#header").load("components/header.html");
-    $("#about").load("components/about.html");
+    $("#about").load("components/about.html", function() {
+        // Garante que o placeholder não fique hidden pelo scroll-reveal do setupScrollAnimations
+        $('#about').addClass('animated');
+        activateScrollAnimations();
+    });
     $("#parallax").load("components/parallax.html", function() {
         console.log("Componente parallax carregado");
         // Inicializa o efeito parallax
@@ -14,7 +18,11 @@ $(document).ready(function () {
         // Ativa as animações de elementos com scroll
         activateScrollAnimations();
     });
-    $("#contact").load("components/contact.html");
+    $("#contact").load("components/contact.html", function() {
+        // Garante que o placeholder não fique hidden pelo scroll-reveal do setupScrollAnimations
+        $('#contact').addClass('animated');
+        activateScrollAnimations();
+    });
     $("#footer").load("components/footer.html");
     
     // Carrega a seção de depoimentos
@@ -29,7 +37,10 @@ $(document).ready(function () {
     // Carrega a seção de projetos e inicializa tudo após o carregamento
     $("#projects").load("components/projects.html", function() {
         console.log("Componente de projetos carregado");
-        
+
+        // Ativa animações de scroll para os elementos do componente
+        activateScrollAnimations();
+
         // Carrega os projetos no carrossel
         initializeProjects();
         
@@ -48,6 +59,8 @@ $(document).ready(function () {
 
     // Carrega as habilidades e, após o componente ser carregado, insere os itens dinamicamente
     $("#skills").load("components/skills.html", function () {
+        // Garante que o placeholder não fique hidden pelo scroll-reveal do setupScrollAnimations
+        $('#skills').addClass('animated');
         $.getJSON('data/skills.json', function (skills) {
             $.each(skills, function (index, skill) {
                 var skillHtml = `
@@ -73,7 +86,7 @@ $(document).ready(function () {
             
             // Adicionar os indicadores de navegação
             $('#testimonialDots').empty();
-            var visibleDots = Math.max(1, testimonials.length - 1); // Um a menos do que o total
+            var visibleDots = testimonials.length;
             for (var i = 0; i < visibleDots; i++) {
                 var dot = $('<div></div>')
                     .addClass('w-2 h-2 rounded-full bg-zinc-700 hover:bg-yellow-500 transition duration-300 cursor-pointer')
@@ -166,9 +179,10 @@ $(document).ready(function () {
             
             // Garantir que a primeira bolinha esteja selecionada no carregamento
             setTimeout(function() {
+                updateTestimonialCarouselWidth();
                 $('#testimonialDots div').removeClass('bg-yellow-500 active-dot').addClass('bg-zinc-700');
                 $('#testimonialDots div[data-index="0"]').removeClass('bg-zinc-700').addClass('bg-yellow-500 active-dot');
-                
+
                 // Ativa as animações de scroll após adicionar os depoimentos
                 activateScrollAnimations();
             }, 100);
@@ -210,20 +224,19 @@ $(document).ready(function () {
     // Função para atualizar a largura total do carrossel de depoimentos
     function updateTestimonialCarouselWidth() {
         var totalCards = $('.testimonial-card').length;
-        var cardWidth = 320; // Largura do card
-        var gap = 32; // Espaçamento entre cards
-        
-        // Certifique-se de que o último card também pode ser visualizado corretamente
-        if (totalCards > 0) {
-            var lastCardPosition = (totalCards - 1) * (cardWidth + gap);
-            
-            // Armazene esses valores para uso posterior
-            $('#testimonialsCarousel').data('lastCardPosition', lastCardPosition);
-            $('#testimonialsCarousel').data('maxScroll', lastCardPosition);
-            $('#testimonialsCarousel').data('cardWidth', cardWidth + gap);
-            $('#testimonialsCarousel').data('totalCards', totalCards);
-            $('#testimonialsCarousel').data('visibleDots', Math.max(1, totalCards - 1));
-        }
+        if (totalCards === 0) return;
+
+        var carouselEl = document.getElementById('testimonialsCarousel');
+        var firstCard = $('.testimonial-card').first()[0];
+        var computedGap = parseInt(window.getComputedStyle(carouselEl).columnGap) || 32;
+        var actualCardWidth = firstCard.offsetWidth + computedGap;
+
+        var lastCardPosition = (totalCards - 1) * actualCardWidth;
+        $('#testimonialsCarousel').data('lastCardPosition', lastCardPosition);
+        $('#testimonialsCarousel').data('maxScroll', lastCardPosition);
+        $('#testimonialsCarousel').data('cardWidth', actualCardWidth);
+        $('#testimonialsCarousel').data('totalCards', totalCards);
+        $('#testimonialsCarousel').data('visibleDots', totalCards);
     }
     
     // Configura os controles do carrossel de depoimentos
@@ -245,15 +258,10 @@ $(document).ready(function () {
                 
                 // Cálculo mais preciso do índice atual
                 var currentIndex = Math.round(scrollPos / cardWidth);
-                
-                // Ajuste para mapear o último card para o último indicador visível
-                if (currentIndex >= totalCards - 1) {
-                    currentIndex = visibleDots - 1;
-                }
-                
+
                 // Garantir que o índice esteja dentro dos limites
                 currentIndex = Math.max(0, Math.min(currentIndex, visibleDots - 1));
-                
+
                 // Atualizar pontos de navegação
                 updateTestimonialDots(currentIndex);
             }, 100));
@@ -264,13 +272,8 @@ $(document).ready(function () {
             var index = $(this).data('index');
             var cardWidth = $('#testimonialsCarousel').data('cardWidth') || 352; // Width + gap
             var totalCards = $('#testimonialsCarousel').data('totalCards') || $('.testimonial-card').length;
-            var visibleDots = $('#testimonialsCarousel').data('visibleDots') || totalCards - 1;
-            
-            // Se for o último indicador, rolar para o último card
-            if (index === visibleDots - 1 && totalCards > visibleDots) {
-                index = totalCards - 1;
-            }
-            
+            var visibleDots = $('#testimonialsCarousel').data('visibleDots') || totalCards;
+
             var scrollTo = index * cardWidth;
             
             // Animar a rolagem com efeito de ease
@@ -309,28 +312,17 @@ $(document).ready(function () {
             var cardWidth = $('#testimonialsCarousel').data('cardWidth') || 352; // Width + gap
             var maxScroll = $('#testimonialsCarousel').data('maxScroll');
             var totalCards = $('#testimonialsCarousel').data('totalCards') || $('.testimonial-card').length;
-            var visibleDots = $('#testimonialsCarousel').data('visibleDots') || totalCards - 1;
-            
+            var visibleDots = $('#testimonialsCarousel').data('visibleDots') || totalCards;
+
             var scrollTo = scrollPos + cardWidth;
-            
+
             // Garantir que não ultrapasse o limite máximo
             if (maxScroll && scrollTo > maxScroll) {
                 scrollTo = maxScroll;
-                
-                // Se estamos rolando para o último card, use o último indicador visível
                 updateTestimonialDots(visibleDots - 1);
             } else {
-                // Calcular o novo índice com base no scroll atualizado
                 var newIndex = Math.round(scrollTo / cardWidth);
-                
-                // Ajustar para mapear corretamente aos indicadores visíveis
-                if (newIndex >= totalCards - 1) {
-                    newIndex = visibleDots - 1;
-                }
-                
-                // Garantir que o índice esteja dentro dos limites
                 newIndex = Math.max(0, Math.min(newIndex, visibleDots - 1));
-                
                 updateTestimonialDots(newIndex);
             }
             
@@ -351,15 +343,8 @@ $(document).ready(function () {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         var index = $(entry.target).data('index');
-                        var visibleDots = $('#testimonialsCarousel').data('visibleDots') || $('.testimonial-card').length - 1;
-                        
-                        // Ajusta o índice para que o último card mapeie para o penúltimo indicador
-                        var totalCards = $('.testimonial-card').length;
-                        if (index >= totalCards - 1) {
-                            index = visibleDots - 1; // O último card mapeia para o último indicador visível
-                        }
-                        
-                        updateTestimonialDots(index);
+                                    var visibleDots = $('#testimonialsCarousel').data('visibleDots') || $('.testimonial-card').length;
+                        updateTestimonialDots(Math.min(index, visibleDots - 1));
                     }
                 });
             }, options);
@@ -445,7 +430,7 @@ $(document).ready(function () {
             
             // Adicionar os indicadores de navegação (um a menos do que o total de projetos)
             $('#carouselDots').empty();
-            var visibleDots = Math.max(1, projects.length - 1); // No mínimo 1 bolinha
+            var visibleDots = projects.length;
             for (var i = 0; i < visibleDots; i++) {
                 var dot = $('<div></div>')
                     .addClass('w-2 h-2 rounded-full bg-zinc-700 hover:bg-yellow-500 transition duration-300 cursor-pointer')
@@ -531,10 +516,11 @@ $(document).ready(function () {
             
             // Garantir que a primeira bolinha esteja selecionada no carregamento
             setTimeout(function() {
+                updateCarouselWidth();
                 // Definir o primeiro indicador como ativo
                 $('#carouselDots div').removeClass('bg-yellow-500 active-dot').addClass('bg-zinc-700');
                 $('#carouselDots div[data-index="0"]').removeClass('bg-zinc-700').addClass('bg-yellow-500 active-dot');
-                
+
                 // Ativa as animações de scroll após adicionar os cards
                 activateScrollAnimations();
             }, 100);
@@ -548,21 +534,19 @@ $(document).ready(function () {
     // Função para atualizar a largura total do carrossel
     function updateCarouselWidth() {
         var totalCards = $('.project-card').length;
-        var cardWidth = 320; // Largura do card
-        var gap = 32; // Espaçamento entre cards
-        
-        // Certifique-se de que o último card também pode ser visualizado corretamente
-        if (totalCards > 0) {
-            var lastCardPosition = (totalCards - 1) * (cardWidth + gap);
-            var carouselWidth = $('#projectsCarousel').width();
-            
-            // Armazene esses valores para uso posterior
-            $('#projectsCarousel').data('lastCardPosition', lastCardPosition);
-            $('#projectsCarousel').data('maxScroll', lastCardPosition);
-            $('#projectsCarousel').data('cardWidth', cardWidth + gap);
-            $('#projectsCarousel').data('totalCards', totalCards);
-            $('#projectsCarousel').data('visibleDots', Math.max(1, totalCards - 1));
-        }
+        if (totalCards === 0) return;
+
+        var carouselEl = document.getElementById('projectsCarousel');
+        var firstCard = $('.project-card').first()[0];
+        var computedGap = parseInt(window.getComputedStyle(carouselEl).columnGap) || 32;
+        var actualCardWidth = firstCard.offsetWidth + computedGap;
+
+        var lastCardPosition = (totalCards - 1) * actualCardWidth;
+        $('#projectsCarousel').data('lastCardPosition', lastCardPosition);
+        $('#projectsCarousel').data('maxScroll', lastCardPosition);
+        $('#projectsCarousel').data('cardWidth', actualCardWidth);
+        $('#projectsCarousel').data('totalCards', totalCards);
+        $('#projectsCarousel').data('visibleDots', totalCards);
     }
     
     // Função para configurar o observador de interseção para os cards do carrossel
@@ -578,15 +562,9 @@ $(document).ready(function () {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         var index = $(entry.target).data('index');
-                        var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length - 1;
-                        
-                        // Ajusta o índice para que o último card mapeie para o penúltimo indicador
-                        var totalCards = $('.project-card').length;
-                        if (index >= totalCards - 1) {
-                            index = visibleDots - 1; // O último card mapeia para o último indicador visível
-                        }
-                        
-                        updateCarouselDots(index);
+                        var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
+                        updateCarouselDots(Math.min(index, visibleDots - 1));
                     }
                 });
             }, options);
@@ -602,8 +580,8 @@ $(document).ready(function () {
     function updateCarouselDots(activeIndex) {
         if (activeIndex === undefined || activeIndex === null) return;
         
-        var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length - 1;
-        
+        var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
         // Certifique-se de que o índice não ultrapasse o número de bolinhas visíveis
         activeIndex = Math.min(activeIndex, visibleDots - 1);
         
@@ -625,17 +603,11 @@ $(document).ready(function () {
             $.data(this, 'scrollTimer', setTimeout(function() {
                 var scrollPos = $('#projectsCarousel').scrollLeft();
                 var cardWidth = $('#projectsCarousel').data('cardWidth') || 352; // Width + gap
-                var totalCards = $('#projectsCarousel').data('totalCards') || $('.project-card').length;
-                var visibleDots = $('#projectsCarousel').data('visibleDots') || totalCards - 1;
-                
+                var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
                 // Cálculo mais preciso do índice atual
                 var currentIndex = Math.round(scrollPos / cardWidth);
-                
-                // Ajuste para mapear o último card para o último indicador visível
-                if (currentIndex >= totalCards - 1) {
-                    currentIndex = visibleDots - 1;
-                }
-                
+
                 // Garantir que o índice esteja dentro dos limites
                 currentIndex = Math.max(0, Math.min(currentIndex, visibleDots - 1));
                 
@@ -648,14 +620,8 @@ $(document).ready(function () {
         $(document).on('click', '#carouselDots div', function() {
             var index = $(this).data('index');
             var cardWidth = $('#projectsCarousel').data('cardWidth') || 352; // Width + gap
-            var totalCards = $('#projectsCarousel').data('totalCards') || $('.project-card').length;
-            var visibleDots = $('#projectsCarousel').data('visibleDots') || totalCards - 1;
-            
-            // Se for o último indicador, rolar para o último card
-            if (index === visibleDots - 1 && totalCards > visibleDots) {
-                index = totalCards - 1;
-            }
-            
+            var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
             var scrollTo = index * cardWidth;
             
             // Animar a rolagem com efeito de ease
@@ -680,8 +646,8 @@ $(document).ready(function () {
             
             // Atualizar os indicadores
             var newIndex = Math.floor(scrollTo / cardWidth);
-            var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length - 1;
-            
+            var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
             // Ajustar índice para as bolinhas visíveis
             newIndex = Math.min(newIndex, visibleDots - 1);
             updateCarouselDots(newIndex);
@@ -693,31 +659,22 @@ $(document).ready(function () {
             var scrollPos = $("#projectsCarousel").scrollLeft();
             var cardWidth = $('#projectsCarousel').data('cardWidth') || 352; // Width + gap
             var maxScroll = $('#projectsCarousel').data('maxScroll');
-            var totalCards = $('#projectsCarousel').data('totalCards') || $('.project-card').length;
-            var visibleDots = $('#projectsCarousel').data('visibleDots') || totalCards - 1;
-            
+            var visibleDots = $('#projectsCarousel').data('visibleDots') || $('.project-card').length;
+
             var scrollTo = scrollPos + cardWidth;
-            
+
+            // Calcular o novo índice com base no scroll atualizado
+            var newIndex = Math.round(scrollTo / cardWidth);
+
+            // Garantir que o índice esteja dentro dos limites
+            newIndex = Math.max(0, Math.min(newIndex, visibleDots - 1));
+
             // Garantir que não ultrapasse o limite máximo
             if (maxScroll && scrollTo > maxScroll) {
                 scrollTo = maxScroll;
-                
-                // Se estamos rolando para o último card, use o último indicador visível
-                updateCarouselDots(visibleDots - 1);
-            } else {
-                // Calcular o novo índice com base no scroll atualizado
-                var newIndex = Math.round(scrollTo / cardWidth);
-                
-                // Ajustar para mapear corretamente aos indicadores visíveis
-                if (newIndex >= totalCards - 1) {
-                    newIndex = visibleDots - 1;
-                }
-                
-                // Garantir que o índice esteja dentro dos limites
-                newIndex = Math.max(0, Math.min(newIndex, visibleDots - 1));
-                
-                updateCarouselDots(newIndex);
             }
+
+            updateCarouselDots(newIndex);
             
             $("#projectsCarousel").animate({ scrollLeft: scrollTo }, 500, 'swing');
         });
