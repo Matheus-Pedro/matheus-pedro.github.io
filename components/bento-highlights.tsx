@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Code2, Gauge, Server } from "lucide-react";
+import { ArrowUpRight, Code2, Gauge, Layers, Server } from "lucide-react";
 import { AnimateIn } from "@/components/animate-in";
 import { GithubIcon } from "@/components/brand-icons";
 import { projects } from "@/lib/data/projects";
@@ -12,6 +12,11 @@ const FOCUS_AREAS = [
     icon: Code2,
     title: "Desenvolvimento",
     description: "Soluções robustas e escaláveis para problemas complexos.",
+  },
+  {
+    icon: Layers,
+    title: "Arquitetura",
+    description: "Clean Architecture, DDD e CQRS em sistemas de alto tráfego.",
   },
   {
     icon: Server,
@@ -39,7 +44,7 @@ export function BentoHighlights() {
   return (
     <section className="border-y border-border/70 bg-card/20">
       <div className="section py-16 md:py-20">
-        <div className="grid grid-cols-2 gap-3 md:auto-rows-[150px] md:grid-flow-dense md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-rows-[minmax(150px,auto)_minmax(150px,auto)_auto] md:grid-cols-4">
           <AnimateIn className="col-span-2 md:row-span-2">
             <Cell className="relative flex h-full flex-col justify-end overflow-hidden bg-gradient-to-br from-brand/15 via-card/40 to-card/40">
               <div
@@ -65,7 +70,7 @@ export function BentoHighlights() {
 
           {FOCUS_AREAS.map((area, i) => (
             <AnimateIn key={area.title} delay={0.05 + i * 0.05}>
-              <Cell className="flex h-full flex-col justify-center">
+              <Cell className="flex h-full flex-col">
                 <area.icon className="size-5 text-brand" strokeWidth={1.5} />
                 <h3 className="mt-3 text-sm font-medium">{area.title}</h3>
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
@@ -75,12 +80,15 @@ export function BentoHighlights() {
             </AnimateIn>
           ))}
 
-          <AnimateIn delay={0.2} className="col-span-2 md:col-span-1">
+          <AnimateIn delay={0.25} className="col-span-2 md:col-span-4">
             <a href="https://github.com/Matheus-Pedro" target="_blank" rel="noreferrer" className="block h-full">
-              <Cell className="group flex h-full flex-col items-start justify-center hover:border-brand/40">
-                <GithubIcon className="size-5 text-muted-foreground transition-colors duration-200 group-hover:text-brand" />
-                <p className="mt-3 text-sm font-medium">Ver código no GitHub</p>
-                <p className="mt-1 text-xs text-muted-foreground">github.com/Matheus-Pedro</p>
+              <Cell className="group flex h-full items-center gap-4 hover:border-brand/40">
+                <GithubIcon className="size-6 shrink-0 text-muted-foreground transition-colors duration-200 group-hover:text-brand" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium">Ver código no GitHub</p>
+                  <p className="mt-1 text-xs text-muted-foreground">github.com/Matheus-Pedro</p>
+                </div>
+                <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
               </Cell>
             </a>
           </AnimateIn>

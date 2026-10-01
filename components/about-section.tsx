@@ -5,7 +5,7 @@ export function AboutSection() {
     <section id="about" className="section py-20 md:py-28">
       <div className="grid gap-10 md:grid-cols-[200px_1fr] md:gap-16">
         <AnimateIn>
-          <p className="text-sm font-medium tracking-wide text-muted-foreground">Sobre</p>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Sobre mim</h2>
         </AnimateIn>
 
         <AnimateIn delay={0.05} className="space-y-5 text-balance text-lg leading-relaxed text-muted-foreground">

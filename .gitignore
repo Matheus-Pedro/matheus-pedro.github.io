@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# currículo gerado a partir de cv/*.html (scripts/build-cv.mjs)
+/public/media/curriculum/*.pdf
+
+# perfil local de ferramenta (contém chave)
+.openclaude-profile.json

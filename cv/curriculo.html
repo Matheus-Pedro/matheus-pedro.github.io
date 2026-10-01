@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matheus Caprioli - Curriculum Vitae</title>
+<style>
+  @page { size: A4; margin: 12mm 16mm; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 8px;
+  }
+
+  header h1 {
+    font-size: 17pt;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+  }
+
+  header .role {
+    font-size: 11pt;
+    color: #222;
+    margin: 0 0 6px 0;
+  }
+
+  .contato-line {
+    font-size: 9.5pt;
+    color: #222;
+    margin: 0 0 3px 0;
+  }
+  .contato-line a { color: #111; }
+
+  section { margin-top: 9px; }
+
+  .sec-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 2px;
+    margin: 0 0 5px 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .content { font-size: 10.5pt; line-height: 1.35; }
+  .content p { margin: 0 0 4px 0; }
+  .content p:last-child { margin-bottom: 0; }
+
+  /* EXPERIENCIA */
+  .job-title {
+    font-weight: 700;
+    font-size: 10.5pt;
+    margin: 0 0 1px 0;
+  }
+  .job-meta {
+    font-size: 9.5pt;
+    font-style: italic;
+    margin: 0 0 4px 0;
+  }
+  ul.bullets {
+    margin: 0;
+    padding-left: 16px;
+  }
+  ul.bullets li {
+    margin-bottom: 4px;
+  }
+  ul.bullets li:last-child { margin-bottom: 0; }
+
+  /* FORMACAO */
+  .edu-entry { margin-bottom: 4px; }
+  .edu-entry:last-child { margin-bottom: 0; }
+  .edu-entry .school { font-weight: 700; }
+  .edu-entry .course { font-style: italic; }
+
+  .pdf-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .pdf-btn:disabled { opacity: 0.6; cursor: default; }
+
+  @media print {
+    .page { padding: 0; max-width: none; }
+    .no-print { display: none !important; }
+    .edu-entry { break-inside: avoid; }
+  }
+
+  @media (max-width: 700px) {
+    .page { padding: 24px 12px; }
+  }
+</style>
+</head>
+<body>
+<button id="btn-pdf" class="pdf-btn no-print" onclick="baixarPDF()">Baixar PDF</button>
+<div class="page">
+
+  <header>
+    <h1>Matheus Caprioli</h1>
+    <p class="role">Desenvolvedor Back-End</p>
+    <p class="contato-line">
+      Colombo, PR &#124; +55 (41) 99715-7197 &#124; <a href="mailto:matheus.caprioli.pedro@gmail.com">matheus.caprioli.pedro@gmail.com</a> &#124; <a href="https://matheus-pedro.github.io/" target="_blank">matheus-pedro.github.io</a> &#124; <a href="https://github.com/Matheus-Pedro" target="_blank">github.com/Matheus-Pedro</a>
+    </p>
+  </header>
+
+  <section>
+    <div class="sec-title">Resumo</div>
+    <div class="content">
+      <p>Desenvolvedor Back-End com experiência em .NET, Java e Python, atuando em sistemas de médio e grande porte, SaaS e soluções com IA. Forte atuação em arquitetura limpa, performance, mensageria e segurança, com experiência em ambientes de alto tráfego e integrações complexas.</p>
+      <p>Projetos pessoais (SaaS, automação de vídeo com IA, assistente de voz) disponíveis no portfólio acima.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Formação</div>
+    <div class="content">
+      <div class="edu-entry">
+        <p class="school">PUC Paraná <span class="course">— Análise e Desenvolvimento de Sistemas (Janeiro/2026 – Julho/2028)</span></p>
+      </div>
+      <div class="edu-entry">
+        <p class="school">Instituto Federal do Paraná <span class="course">— Técnico em Informática (Janeiro/2022 – Dezembro/2025)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Experiência Profissional</div>
+    <div class="content">
+      <p class="job-title">BNE e TBR — Desenvolvedor Back-End</p>
+      <p class="job-meta">Colombo, PR (Agosto/2024 – Agosto/2026) · Pessoa Jurídica</p>
+      <ul class="bullets">
+        <li><strong>Arquitetura e Design Patterns:</strong> reestruturei módulos legados aplicando Clean Architecture e DDD; implementei CQRS com MediatR em módulo de alto tráfego, permitindo escalar leituras independentemente; arquitetei cache híbrido com Factory Pattern para alternar entre Memory Cache e Redis sem alterar código; apliquei Unit of Work e Repository Pattern para garantir consistência transacional em operações multi-repositório.</li>
+        <li><strong>Performance:</strong> corrigi instabilidade no Solr que causava picos de CPU e otimizei consultas (~50ms de ganho); eliminei queries N+1 no Entity Framework (eager loading/split queries); implementei cache distribuído com Redis para dados de alta frequência; implementei cache HTTP com ETag/304 (~3s → ~50ms em requisições subsequentes).</li>
+        <li><strong>Dados e Mensageria:</strong> migrei envio de e-mails para filas com RabbitMQ, liberando threads da API; integrei gateways de pagamento (Iugu, Pagar.me) para assinaturas recorrentes, com billing e webhooks automatizados.</li>
+        <li><strong>Segurança:</strong> conduzi hardening contra OWASP Top 10 (SQL Injection, XSS, CSRF) com Burp Suite, sanitização de inputs e Content Security Policy.</li>
+        <li><strong>Qualidade:</strong> estabeleci testes unitários como requisito de DoD, elevando a cobertura do core para ~90%; padronizei logging estruturado com Serilog.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Habilidades Técnicas</div>
+    <div class="content">
+      <p><strong>Linguagens:</strong> C#, Java, Python, TypeScript/JavaScript.</p>
+      <p><strong>Backend:</strong> .NET / ASP.NET Core, Spring Boot, Node.js/Express, Flask.</p>
+      <p><strong>Arquitetura e Design Patterns:</strong> Clean Architecture, DDD, CQRS, N-Tier, SOLID, Factory Pattern, Repository Pattern, Unit of Work.</p>
+      <p><strong>Dados:</strong> PostgreSQL, Redis, Solr, Entity Framework.</p>
+      <p><strong>Mensageria/Jobs:</strong> RabbitMQ, Hangfire.</p>
+      <p><strong>Frontend:</strong> React, Next.js, Vite, Tailwind CSS, Radix UI.</p>
+      <p><strong>DevOps/Cloud:</strong> Docker, Nginx, GitHub Actions, AWS, Railway, Cloudflare.</p>
+      <p><strong>Segurança:</strong> JWT, OWASP Top 10, Burp Suite.</p>
+      <p><strong>IA/ML:</strong> OpenAI, DeepSeek, Whisper, OmniVoice, OpenCV, LM Studio/Ollama.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Idiomas</div>
+    <div class="content">
+      <p>Português (nativo) · Inglês (leitura avançada, conversação intermediária) · Espanhol (intermediário).</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Nome sugerido pro PDF: o navegador usa document.title como nome padrão
+  // ao salvar via "Imprimir > Salvar como PDF". Mantendo esse nome fixo,
+  // salvar sempre no mesmo local substitui o arquivo anterior.
+  const PDF_FILENAME = 'Matheus_Caprioli_CV';
+
+  function baixarPDF() {
+    const tituloOriginal = document.title;
+    document.title = PDF_FILENAME;
+    window.print();
+    document.title = tituloOriginal;
+  }
+</script>
+</body>
+</html>

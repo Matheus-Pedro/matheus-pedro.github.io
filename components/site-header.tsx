@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { CtaLink } from "@/components/cta-button";
 import { cn } from "@/lib/utils";
@@ -33,7 +34,8 @@ export function SiteHeader() {
       )}
     >
       <div className="section flex h-16 items-center justify-between">
-        <a href="#top" className="text-sm font-semibold tracking-tight">
+        <a href="#top" className="flex items-center gap-2.5 text-sm font-semibold tracking-tight">
+          <Image src="/media/images/mocap-logo-square.svg" alt="" width={26} height={26} priority />
           Matheus Pedro
         </a>
 

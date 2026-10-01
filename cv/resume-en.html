@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matheus Caprioli - Resume</title>
+<style>
+  @page { size: A4; margin: 12mm 16mm; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 8px;
+  }
+
+  header h1 {
+    font-size: 17pt;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+  }
+
+  header .role {
+    font-size: 11pt;
+    color: #222;
+    margin: 0 0 6px 0;
+  }
+
+  .contato-line {
+    font-size: 9.5pt;
+    color: #222;
+    margin: 0 0 3px 0;
+  }
+  .contato-line a { color: #111; }
+
+  section { margin-top: 9px; }
+
+  .sec-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 2px;
+    margin: 0 0 5px 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .content { font-size: 10.5pt; line-height: 1.35; }
+  .content p { margin: 0 0 4px 0; }
+  .content p:last-child { margin-bottom: 0; }
+
+  /* EXPERIENCE */
+  .job-title {
+    font-weight: 700;
+    font-size: 10.5pt;
+    margin: 0 0 1px 0;
+  }
+  .job-meta {
+    font-size: 9.5pt;
+    font-style: italic;
+    margin: 0 0 4px 0;
+  }
+  ul.bullets {
+    margin: 0;
+    padding-left: 16px;
+  }
+  ul.bullets li {
+    margin-bottom: 4px;
+  }
+  ul.bullets li:last-child { margin-bottom: 0; }
+
+  /* EDUCATION */
+  .edu-entry { margin-bottom: 4px; }
+  .edu-entry:last-child { margin-bottom: 0; }
+  .edu-entry .school { font-weight: 700; }
+  .edu-entry .course { font-style: italic; }
+
+  .pdf-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .pdf-btn:disabled { opacity: 0.6; cursor: default; }
+
+  @media print {
+    .page { padding: 0; max-width: none; }
+    .no-print { display: none !important; }
+    .edu-entry { break-inside: avoid; }
+  }
+
+  @media (max-width: 700px) {
+    .page { padding: 24px 12px; }
+  }
+</style>
+</head>
+<body>
+<button id="btn-pdf" class="pdf-btn no-print" onclick="downloadPdf()">Download PDF</button>
+<div class="page">
+
+  <header>
+    <h1>Matheus Caprioli</h1>
+    <p class="role">Back-End Developer</p>
+    <p class="contato-line">
+      Colombo, PR, Brazil &#124; +55 (41) 99715-7197 &#124; <a href="mailto:matheus.caprioli.pedro@gmail.com">matheus.caprioli.pedro@gmail.com</a> &#124; <a href="https://matheus-pedro.github.io/" target="_blank">matheus-pedro.github.io</a> &#124; <a href="https://github.com/Matheus-Pedro" target="_blank">github.com/Matheus-Pedro</a>
+    </p>
+  </header>
+
+  <section>
+    <div class="sec-title">Summary</div>
+    <div class="content">
+      <p>Back-End Developer with experience in .NET, Java, and Python, working on medium and large-scale systems, SaaS, and AI-driven solutions. Strong background in clean architecture, performance, messaging, and security, with experience in high-traffic environments and complex integrations.</p>
+      <p>Personal projects (SaaS, AI video automation, voice assistant) available in the portfolio above.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Education</div>
+    <div class="content">
+      <div class="edu-entry">
+        <p class="school">PUC Paraná <span class="course">— Systems Analysis and Development (January 2026 – July 2028)</span></p>
+      </div>
+      <div class="edu-entry">
+        <p class="school">Instituto Federal do Paraná <span class="course">— Technical Degree in Information Technology (January 2022 – December 2025)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Professional Experience</div>
+    <div class="content">
+      <p class="job-title">BNE and TBR — Back-End Developer</p>
+      <p class="job-meta">Colombo, PR, Brazil (August 2024 – August 2026) · Independent Contractor</p>
+      <ul class="bullets">
+        <li><strong>Architecture &amp; Design Patterns:</strong> restructured legacy modules applying Clean Architecture and DDD; implemented CQRS with MediatR in a high-traffic module, enabling reads to scale independently; architected a hybrid caching system with the Factory Pattern to switch between Memory Cache and Redis without code changes; applied Unit of Work and Repository Pattern to ensure transactional consistency across multi-repository operations.</li>
+        <li><strong>Performance:</strong> fixed Solr instability that caused CPU spikes and optimized queries (~50ms improvement); eliminated N+1 queries in Entity Framework (eager loading/split queries); implemented distributed caching with Redis for high-frequency data; implemented HTTP caching with ETag/304 (~3s → ~50ms on subsequent requests).</li>
+        <li><strong>Data &amp; Messaging:</strong> migrated email delivery to queues with RabbitMQ, freeing up API threads; integrated payment gateways (Iugu, Pagar.me) for recurring subscriptions, with automated billing and webhooks.</li>
+        <li><strong>Security:</strong> led hardening against the OWASP Top 10 (SQL Injection, XSS, CSRF) using Burp Suite, input sanitization, and Content Security Policy.</li>
+        <li><strong>Quality:</strong> established unit testing as a Definition of Done requirement, raising core coverage to ~90%; standardized structured logging with Serilog.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Technical Skills</div>
+    <div class="content">
+      <p><strong>Languages:</strong> C#, Java, Python, TypeScript/JavaScript.</p>
+      <p><strong>Backend:</strong> .NET / ASP.NET Core, Spring Boot, Node.js/Express, Flask.</p>
+      <p><strong>Architecture &amp; Design Patterns:</strong> Clean Architecture, DDD, CQRS, N-Tier, SOLID, Factory Pattern, Repository Pattern, Unit of Work.</p>
+      <p><strong>Data:</strong> PostgreSQL, Redis, Solr, Entity Framework.</p>
+      <p><strong>Messaging/Jobs:</strong> RabbitMQ, Hangfire.</p>
+      <p><strong>Frontend:</strong> React, Next.js, Vite, Tailwind CSS, Radix UI.</p>
+      <p><strong>DevOps/Cloud:</strong> Docker, Nginx, GitHub Actions, AWS, Railway, Cloudflare.</p>
+      <p><strong>Security:</strong> JWT, OWASP Top 10, Burp Suite.</p>
+      <p><strong>AI/ML:</strong> OpenAI, DeepSeek, Whisper, OmniVoice, OpenCV, LM Studio/Ollama.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Languages</div>
+    <div class="content">
+      <p>Portuguese (native) · English (advanced reading, intermediate conversation) · Spanish (intermediate).</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Suggested PDF file name: the browser uses document.title as the default
+  // file name when saving via "Print > Save as PDF". Keeping this name fixed
+  // means saving to the same location always overwrites the previous file.
+  const PDF_FILENAME = 'Matheus_Caprioli_Resume';
+
+  function downloadPdf() {
+    const originalTitle = document.title;
+    document.title = PDF_FILENAME;
+    window.print();
+    document.title = originalTitle;
+  }
+</script>
+</body>
+</html>

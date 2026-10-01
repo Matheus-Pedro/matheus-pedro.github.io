@@ -24,12 +24,17 @@ Gera o site estático em `out/` (o mesmo que o workflow de deploy publica no Pag
 - `app/` — páginas (App Router)
 - `components/` — seções e componentes de UI (`components/ui` = base shadcn/ui)
 - `lib/data/` — conteúdo do site (projetos, skills, depoimentos) em TypeScript
-- `public/media/` — imagens, vídeos e o PDF do currículo
+- `public/media/` — imagens e vídeos dos projetos
+- `cv/` — fonte do currículo em HTML (`curriculo.html` em PT, `resume-en.html` em EN)
+- `scripts/build-cv.mjs` — gera os PDFs do currículo
 
 ## Deploy
 
 Automático via `.github/workflows/deploy.yml` a cada push em `main`. No repositório, em **Settings → Pages**, a fonte precisa estar configurada como **GitHub Actions** (não "Deploy from a branch").
 
-## Pendências conhecidas
+## Currículo
 
-Os projetos **Writecode**, **AssistAi** e **Voice Assistant** ainda não têm imagem/vídeo de demonstração — os caminhos já estão referenciados em `lib/data/projects.ts` (`public/media/images/writecode.png` etc.), só falta adicionar os arquivos.
+O currículo é editado em `cv/curriculo.html` (e `cv/resume-en.html`). O PDF **não** é versionado: `scripts/build-cv.mjs` imprime os HTMLs com o Chrome headless em `public/media/curriculum/` antes de todo `npm run dev` e `npm run build` — inclusive no workflow de deploy. Então basta editar o HTML e dar push em `main` que o PDF do site é atualizado.
+
+Para gerar só os PDFs: `npm run cv`. O script acha o Chrome sozinho (Linux, macOS, Windows e o Chrome do Windows a partir do WSL); se precisar, defina `CHROME_PATH`.
+

@@ -6,8 +6,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="section py-20 md:py-28">
       <AnimateIn className="max-w-xl">
-        <p className="text-sm font-medium tracking-wide text-muted-foreground">Projetos</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
           Alguns projetos que desenvolvi
         </h2>
         <p className="mt-4 text-muted-foreground">

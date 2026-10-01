@@ -1,7 +1,7 @@
 export interface Project {
   title: string;
   image: string;
-  video: string;
+  video?: string;
   description: string;
   link: string;
   technologies: string[];
@@ -9,12 +9,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Xys Bio",
-    image: "/media/images/xysbio.png",
+    title: "xys.lol",
+    image: "/media/images/xyslol.png",
     video: "/media/videos/xysbio.webm",
     description:
-      "Xys Bio é um SaaS de portfólios digitais personalizáveis que une design moderno e alta performance para elevar a presença online de profissionais, marcas, gamers e streamers. Atualmente em fase beta, o sistema está sendo testado e recebendo feedbacks. O backend foi migrado de Java/Spring Boot para .NET 10 com Clean Architecture, e o frontend reescrito em Next.js 14.",
-    link: "https://xys.bio/",
+      "xys.lol (antes Xys Bio) é um SaaS de páginas de perfil personalizáveis — \"menos template, mais você\" — para profissionais, marcas, gamers e streamers, com integração ao Discord (presença em tempo real), ranking de perfis e plano premium. O backend foi migrado de Java/Spring Boot para .NET 10 com Clean Architecture, e o frontend reescrito em Next.js 14.",
+    link: "",
     technologies: [
       "C#",
       "Dotnet",
@@ -29,6 +29,56 @@ export const projects: Project[] = [
       "Nginx",
       "Cloudflare",
     ],
+  },
+  {
+    title: "FolhaEfc",
+    image: "/media/images/folhaefc.png",
+    description:
+      "FolhaEfc é uma plataforma de gestão para pequenas e médias empresas brasileiras, que reúne em um só lugar colaboradores, horas e recibos; financeiro realizado e previsto (contas a pagar e a receber, fluxo de caixa, DRE e conciliação bancária por extrato OFX); compras, estoque e vendas; e os formulários da rotina. É multi-tenant por organização, com subdomínio por cliente, convites e acesso por módulo. Está em uso piloto com empresas reais.",
+    link: "",
+    technologies: [
+      "C#",
+      "Dotnet",
+      "Clean Architecture",
+      "MediatR",
+      "Entity Framework",
+      "PostgreSQL",
+      "JWT",
+      "Next.js",
+      "React Query",
+      "Tailwind CSS",
+      "Playwright",
+      "Docker",
+      "Railway",
+    ],
+  },
+  {
+    title: "Trabalha Brasil",
+    image: "/media/images/trabalhabrasil.png",
+    description:
+      "Trabalha Brasil é um dos maiores sites de vagas de emprego do país, com milhões de vagas e mais de 60 mil empresas contratando. Atuei como desenvolvedor back-end (BNE/TBR, 2024–2026): reestruturei módulos legados com Clean Architecture e DDD, implementei CQRS com MediatR em módulo de alto tráfego, cache híbrido (Memory Cache/Redis), cache HTTP com ETag, filas com RabbitMQ para envio de e-mails, integração com gateways de pagamento para assinaturas, otimizações no Solr e hardening contra o OWASP Top 10.",
+    link: "https://www.trabalhabrasil.com.br",
+    technologies: [
+      "C#",
+      "Dotnet",
+      "ASP.NET MVC",
+      "Entity Framework",
+      "Solr",
+      "Redis",
+      "RabbitMQ",
+      "Hangfire",
+      "CQRS",
+      "DDD",
+      "Serilog",
+    ],
+  },
+  {
+    title: "Total Equipamentos",
+    image: "/media/images/totalequipamentos.png",
+    description:
+      "Site da Total Equipamentos, locadora de máquinas e equipamentos para obra em Curitiba e no litoral do Paraná. Reúne a apresentação da empresa, um catálogo da frota com filtro por categoria e um simulador de locação: o cliente escolhe o equipamento, informa retirada e devolução, vê o total estimado na hora e fecha o orçamento pelo WhatsApp.",
+    link: "https://totalequipamentos.com",
+    technologies: ["Next.js", "React", "TypeScript", "SEO"],
   },
   {
     title: "Radio Gym",
@@ -94,7 +144,6 @@ export const projects: Project[] = [
   {
     title: "Writecode",
     image: "/media/images/writecode.png",
-    video: "/media/videos/writecode.webm",
     description:
       "Writecode é um typing trainer voltado pra prática de código, permitindo treinar velocidade e precisão de digitação com trechos reais de código em 10 linguagens diferentes (C#, Python, JavaScript, TypeScript, Go, Rust, Ruby, PHP, C e Java). Os trechos podem vir de repositórios populares do GitHub, de um repositório específico escolhido pelo usuário, ou ser gerados por IA. Conta com métricas de performance em tempo real (PPM/CPM, precisão e contagem de erros) e feedback visual caractere a caractere.",
     link: "https://github.com/Matheus-Pedro/writecode",
@@ -103,7 +152,6 @@ export const projects: Project[] = [
   {
     title: "AssistAi",
     image: "/media/images/assistai.png",
-    video: "/media/videos/assistai.webm",
     description:
       "AssistAi é um sistema de processamento de vídeo automatizado com integração de IA local, focado em transcrição, análise e geração de conteúdo. Extrai áudio e cortes de vídeos com FFmpeg, transcreve com Whisper, detecta cenas relevantes com OpenCV, e roda modelos de IA localmente via LM Studio e Ollama, eliminando dependência de serviços pagos. Todo o processamento pesado roda em jobs assíncronos em background, sem travar a API.",
     link: "",
@@ -112,10 +160,17 @@ export const projects: Project[] = [
   {
     title: "Voice Assistant",
     image: "/media/images/voiceassistant.png",
-    video: "/media/videos/voiceassistant.webm",
     description:
       "Assistente de voz pessoal com pipeline completo de captura de áudio, transcrição, geração de resposta por IA e síntese de fala com voz clonada, rodando em tempo real. Usa Whisper para transcrição, a API da DeepSeek como modelo de linguagem, e OmniVoice para clonagem de voz, mantendo a mesma identidade vocal entre sessões. Inferência dos modelos roda localmente em GPU.",
     link: "",
     technologies: ["Python", "Whisper", "OmniVoice", "DeepSeek", "CUDA"],
+  },
+  {
+    title: "Minecraft Server",
+    image: "/media/images/minecraftserver.png",
+    description:
+      "Infraestrutura self-hosted para servidores de Minecraft com Docker Compose, rodando várias instâncias lado a lado — do Vanilla mais recente a modpacks Forge 1.20.1 com mais de 200 mods — cada uma com sua memória, porta, RCON e dados persistentes em volume. Inclui exposição pública via ngrok e um bot do Discord em Python que publica o endereço do servidor, responde ao status e avisa o canal quando o endereço muda.",
+    link: "",
+    technologies: ["Docker", "Docker Compose", "Linux", "Java", "Forge", "Python", "discord.py", "ngrok", "RCON"],
   },
 ];
