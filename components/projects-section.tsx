@@ -10,7 +10,7 @@ export function ProjectsSection() {
           Alguns projetos que desenvolvi
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Uma seleção do que venho construindo — de SaaS em produção a experimentos pessoais
+          Uma seleção do que venho construindo: de SaaS em produção a experimentos pessoais
           com IA.
         </p>
       </AnimateIn>

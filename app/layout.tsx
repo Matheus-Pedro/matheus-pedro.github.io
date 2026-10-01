@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Matheus Pedro — Desenvolvedor Full Stack",
+  title: "Matheus Pedro | Desenvolvedor Full Stack",
   description:
     "Desenvolvedor Full Stack de Curitiba, PR. Back-end, arquitetura de software, APIs e DevOps.",
 };

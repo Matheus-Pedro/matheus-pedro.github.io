@@ -13,7 +13,7 @@ export const projects: Project[] = [
     image: "/media/images/xyslol.png",
     video: "/media/videos/xysbio.webm",
     description:
-      "xys.lol (antes Xys Bio) é um SaaS de páginas de perfil personalizáveis — \"menos template, mais você\" — para profissionais, marcas, gamers e streamers, com integração ao Discord (presença em tempo real), ranking de perfis e plano premium. O backend foi migrado de Java/Spring Boot para .NET 10 com Clean Architecture, e o frontend reescrito em Next.js 14.",
+      "xys.lol (antes Xys Bio) é um SaaS de páginas de perfil personalizáveis (\"menos template, mais você\") para profissionais, marcas, gamers e streamers, com integração ao Discord (presença em tempo real), ranking de perfis e plano premium. O backend foi migrado de Java/Spring Boot para .NET 10 com Clean Architecture, e o frontend reescrito em Next.js 14.",
     link: "",
     technologies: [
       "C#",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     title: "Trabalha Brasil",
     image: "/media/images/trabalhabrasil.png",
     description:
-      "Trabalha Brasil é um dos maiores sites de vagas de emprego do país, com milhões de vagas e mais de 60 mil empresas contratando. Atuei como desenvolvedor back-end (BNE/TBR, 2024–2026): reestruturei módulos legados com Clean Architecture e DDD, implementei CQRS com MediatR em módulo de alto tráfego, cache híbrido (Memory Cache/Redis), cache HTTP com ETag, filas com RabbitMQ para envio de e-mails, integração com gateways de pagamento para assinaturas, otimizações no Solr e hardening contra o OWASP Top 10.",
+      "Trabalha Brasil é um dos maiores sites de vagas de emprego do país, com milhões de vagas e mais de 60 mil empresas contratando. Atuei como desenvolvedor back-end (BNE/TBR, 2024 a 2026): reestruturei módulos legados com Clean Architecture e DDD, implementei CQRS com MediatR em módulo de alto tráfego, cache híbrido (Memory Cache/Redis), cache HTTP com ETag, filas com RabbitMQ para envio de e-mails, integração com gateways de pagamento para assinaturas, otimizações no Solr e hardening contra o OWASP Top 10.",
     link: "https://www.trabalhabrasil.com.br",
     technologies: [
       "C#",
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     title: "Minecraft Server",
     image: "/media/images/minecraftserver.png",
     description:
-      "Infraestrutura self-hosted para servidores de Minecraft com Docker Compose, rodando várias instâncias lado a lado — do Vanilla mais recente a modpacks Forge 1.20.1 com mais de 200 mods — cada uma com sua memória, porta, RCON e dados persistentes em volume. Inclui exposição pública via ngrok e um bot do Discord em Python que publica o endereço do servidor, responde ao status e avisa o canal quando o endereço muda.",
+      "Infraestrutura self-hosted para servidores de Minecraft com Docker Compose, rodando várias instâncias lado a lado, do Vanilla mais recente a modpacks Forge 1.20.1 com mais de 200 mods, cada uma com sua memória, porta, RCON e dados persistentes em volume. Inclui exposição pública via ngrok e um bot do Discord em Python que publica o endereço do servidor, responde ao status e avisa o canal quando o endereço muda.",
     link: "",
     technologies: ["Docker", "Docker Compose", "Linux", "Java", "Forge", "Python", "discord.py", "ngrok", "RCON"],
   },

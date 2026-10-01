@@ -8,7 +8,7 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
-    text: "Trabalhar com o Matheus Pedro sempre foi tranquilo e produtivo. A gente já fez vários projetos juntos, como o Orvall.com.br, o xys.bio e outras ideias internas que colocamos pra rodar. Eu cuidava do front-end e ele mandava muito bem no back-end — a integração sempre funcionou super bem. O Matheus entende muito de back, consegue montar soluções sólidas e ainda é gente boa de trabalhar junto. Até nos trabalhos da Escola, ele levava tudo a sério e fazia acontecer. Sem dúvida, é alguém que faz diferença em qualquer projeto.",
+    text: "Trabalhar com o Matheus Pedro sempre foi tranquilo e produtivo. A gente já fez vários projetos juntos, como o Orvall.com.br, o xys.bio e outras ideias internas que colocamos pra rodar. Eu cuidava do front-end e ele mandava muito bem no back-end, e a integração sempre funcionou super bem. O Matheus entende muito de back, consegue montar soluções sólidas e ainda é gente boa de trabalhar junto. Até nos trabalhos da Escola, ele levava tudo a sério e fazia acontecer. Sem dúvida, é alguém que faz diferença em qualquer projeto.",
     name: "Carlos Eduardo Ardnt",
     position: "Front End no BNE",
   },
