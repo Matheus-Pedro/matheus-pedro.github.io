@@ -82,7 +82,7 @@ export const projects: Project[] = [
   },
   {
     title: "Radio Gym",
-    image: "/media/images/radiogym.png",
+    image: "/media/images/radio-efficiency.png",
     video: "/media/videos/radiogym.webm",
     description:
       "Radio Gym é um sistema de streaming de áudios, com um painel web para tocar músicas automaticamente dentro da academia, sincronizando com o sistema de gerenciamento e permitindo controle em todas as unidades da Efficiency Gym. O sistema também pode exibir anúncios publicitários entre as músicas, permitindo monetização e informativos educativos. Resultou na sincronização em todas as unidades da Efficiency Gym, em uma melhora na experiência dos alunos e facilidade no trabalho dos funcionários.",
